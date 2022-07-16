@@ -7,6 +7,7 @@
 
 <script>
 //axios 默认配置
+// 需要在每一次请求前自动加上token
 import request from '@/utils/request'
 
 export default {

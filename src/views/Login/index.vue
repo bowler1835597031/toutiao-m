@@ -100,6 +100,7 @@ export default {
         // console.log(res)
         //存储token
         this.$store.commit('setUser', res.data.data)
+        console.log(res)
         //跳转页面
         this.$router.push('/profile')
         //提示成功
