@@ -5,7 +5,7 @@
       <!-- 登陆的盒子 -->
       <div v-if="isLogin" class="user-info banner">
         <!-- 占位 -->
-        <van-row>1</van-row>
+        <van-row></van-row>
         <!-- 展示用户信息 -->
         <van-row class="row-2">
           <van-col span="12">
