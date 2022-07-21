@@ -15,6 +15,7 @@ module.exports = {
     'no-multiple-empty-lines': 'off',
     'space-before-function-paren': 'off',
     'spaced-comment': 'off',
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
+    'no-unused-expressions': 'off'
   }
 }
