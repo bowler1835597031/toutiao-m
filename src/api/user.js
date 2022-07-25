@@ -67,3 +67,25 @@ export const addUser = (target) => {
     }
   })
 }
+
+/**
+ * 获取用户个人资料
+ * @returns Promise
+ */
+export const getUserProfile = () => {
+  return request({
+    url: '/v1_0/user/profile'
+  })
+}
+
+/**
+ * 编辑用户个人资料
+ * @returns Promise
+ */
+export const editUserProfile = (data) => {
+  return request({
+    url: '/v1_0/user/profile',
+    method: 'PATCH',
+    data
+  })
+}
