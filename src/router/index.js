@@ -35,6 +35,11 @@ const routes = [
   {
     path: '/search',
     component: () => import('@/views/Search')
+  },
+  {
+    path: '/detail/:articleId',
+    component: () => import('@/views/Detail'),
+    props: true //开启路由传参
   }
 ]
 

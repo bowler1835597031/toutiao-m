@@ -84,7 +84,7 @@ export default {
     async getAllChannels() {
       const { data } = await getAllChannels()
       this.allChannels = data.data.channels
-      console.log(data)
+      // console.log(data)
     },
     onClickMyChannel(channel, index) {
       if (this.isEdit && channel.name !== '推荐') {

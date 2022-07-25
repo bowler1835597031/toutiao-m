@@ -7,6 +7,7 @@
       @load="onLoad"
       :error.sync="error"
       error-text="请求失败，点击重新加载"
+      class="list"
     >
       <van-cell v-for="item in list" :key="item.art_id" :title="item.title" />
     </van-list>
@@ -45,7 +46,7 @@ export default {
         // console.log(data)
         const { results } = data.data
         this.list.push(...results)
-        console.log(this.list)
+        // console.log(this.list)
         this.loading = false
 
         if (results.length) {
@@ -62,4 +63,8 @@ export default {
 }
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.list {
+  padding-top: 108px;
+}
+</style>

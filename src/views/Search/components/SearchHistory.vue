@@ -10,10 +10,10 @@
     <van-cell
       v-for="(item, index) in searchHistorlist"
       :key="index"
-      :title="item+''"
-      @click="delFn(index,item)"
+      :title="item + ''"
+      @click="delFn(index, item)"
     >
-      <van-icon name="close"  v-show="isShow"/>
+      <van-icon name="close" v-show="isShow" />
     </van-cell>
   </div>
 </template>
@@ -28,14 +28,14 @@ export default {
       require: true
     }
   },
-  data () {
+  data() {
     return {
       isShow: false
     }
   },
   methods: {
     // 删除记录
-    delFn (index, item) {
+    delFn(index, item) {
       // 判断状态
       if (this.isShow) {
         this.$emit('delFn', index)
@@ -44,7 +44,7 @@ export default {
       }
     },
     // 删除全部记录
-    delAll () {
+    delAll() {
       this.$emit('delAll')
     }
   }
@@ -53,6 +53,7 @@ export default {
 
 <style scoped lang="less">
 .search-history {
+  margin-top: 108px;
   .history-title {
     .complete {
       margin-left: 7px;

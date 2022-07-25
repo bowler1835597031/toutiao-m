@@ -29,6 +29,7 @@
 import { getArticleList } from '@/api'
 import ArticleItem from './ArticleItem.vue'
 export default {
+  name: 'ArticleList',
   components: {
     ArticleItem
   },

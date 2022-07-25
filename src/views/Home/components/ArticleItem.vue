@@ -5,12 +5,14 @@
       v-if="articleInfo.cover.type === 0"
       :title="articleInfo.title"
       :label="articleDesc"
+      :to="`detail/${articleInfo.art_id}`"
     />
     <!-- 渲染一张图片 -->
     <van-cell
       v-if="articleInfo.cover.type === 1"
       :title="articleInfo.title"
       :label="articleDesc"
+      :to="`detail/${articleInfo.art_id}`"
     >
       <van-image
         width="3rem"
@@ -24,6 +26,7 @@
       v-if="articleInfo.cover.type === 3"
       :title="articleInfo.title"
       :label="articleDesc"
+      :to="`detail/${articleInfo.art_id}`"
     >
       <template #label>
         <!-- 图片 -->
@@ -47,6 +50,7 @@
 //引入dayjs
 import dayjs from '@/utils/days'
 export default {
+  name: 'ArticleItem',
   props: {
     articleInfo: {
       type: Object,

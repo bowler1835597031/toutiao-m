@@ -6,7 +6,9 @@ module.exports = {
       //如果是vant组件 就返回37.5，如果不是返回75
       rootValue: (module) => (/vant/gi.test(module.file) ? 37.5 : 75),
       //适配的属性
-      propList: ['*']
+      propList: ['*'],
+      //配置不要转换的样式资源
+      exclude: 'github-markdown'
     }
   }
 }
