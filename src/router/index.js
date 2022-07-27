@@ -40,6 +40,10 @@ const routes = [
     path: '/detail/:articleId',
     component: () => import('@/views/Detail'),
     props: true //开启路由传参
+  },
+  {
+    path: '/user',
+    component: () => import('@/views/User')
   }
 ]
 
