@@ -89,3 +89,16 @@ export const editUserProfile = (data) => {
     data
   })
 }
+
+/**
+ *编辑用户照片资料（头像、身份证照片）
+ * @param {*} file 图片的FormData
+ * @returns
+ */
+export const updateUserPhoto = (data) => {
+  return request({
+    method: 'PATCH',
+    url: '/v1_0/user/photo',
+    data
+  })
+}
