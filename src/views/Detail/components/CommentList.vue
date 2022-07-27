@@ -6,16 +6,17 @@
     :error.sync="error"
     error-text="请求失败，点击重新加载"
     @load="onLoad"
+    :immediate-check="false"
   >
-    <CommentItem v-for="(item, index) in list" :key="index" :comment="item" />
-    <!-- 评论回复 -->
-    <van-popup v-model="isReplyShow" position="bottom" style="height: 85%">
-      评论回复
-    </van-popup>
-    <!-- /评论回复 -->
+    <!-- :immediate-check="false" 关闭初始化时立即执行滚动位置检查，避免回复数据重复渲染 -->
+    <CommentItem
+      v-for="(item, index) in list"
+      :key="index"
+      :comment="item"
+      @click-reply="$emit('click-reply', $event)"
+    />
   </van-list>
 </template>
-
 <script>
 import { getComments } from '@/api'
 import CommentItem from './CommentItem.vue'
@@ -29,6 +30,13 @@ export default {
     list: {
       type: Array,
       default: () => []
+    },
+    type: {
+      type: String,
+      validator(value) {
+        return ['a', 'c'].includes(value)
+      },
+      default: 'a'
     }
   },
   components: {
@@ -46,6 +54,8 @@ export default {
     }
   },
   created() {
+    //因为关闭了初始化时立即执行滚动位置检查，不会自动初始化loading转圈，所以手动开启加载loading
+    this.loading = true
     this.onLoad()
   },
   methods: {
@@ -53,7 +63,7 @@ export default {
       try {
         //1.请求获取数据
         const { data } = await getComments({
-          type: 'a',
+          type: this.type,
           source: this.source,
           offset: this.offset,
           limit: this.limit

@@ -21,8 +21,14 @@
 <script>
 import { publishComment } from '@/api'
 export default {
-  name: 'PostComment',
-  components: {},
+  name: 'CommentPopup',
+  //子组件接收父组件共享的articleId
+  inject: {
+    articleId: {
+      type: [Number, String],
+      default: null
+    }
+  },
   props: {
     target: {
       type: [Number, String],
@@ -48,7 +54,7 @@ export default {
         const { data } = await publishComment({
           target: this.target,
           content: this.message,
-          art_id: null
+          art_id: this.articleId
         })
         this.message = ''
         this.$emit('publishCommentSuccess', data.data)

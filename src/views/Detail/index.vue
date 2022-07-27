@@ -68,6 +68,7 @@
           :source="article.art_id"
           @loading-success="totalCommentCounts = $event.total_count"
           :list="commentList"
+          @click-reply="onReplyClick"
         ></CommentList>
         <!-- 底部区域 -->
         <div class="article-bottom">
@@ -92,13 +93,16 @@
           <van-icon name="share" color="#777777"></van-icon>
         </div>
         <!-- /底部区域 -->
+        <!-- 发布评论 -->
         <van-popup v-model="isPopupShow" position="bottom">
           <CommentPopup
             :target="article.art_id"
             @publishCommentSuccess="onpublishCommentSuccess"
           ></CommentPopup>
         </van-popup>
+        <!-- /发布评论 -->
       </div>
+
       <!-- /加载完成-文章详情 -->
 
       <!-- 加载失败：404 -->
@@ -118,6 +122,11 @@
       </div>
       <!-- /加载失败：其它未知错误（例如网络原因或服务端异常） -->
     </div>
+    <!-- 发布评论 -->
+    <van-popup v-model="isReplyShow" position="bottom" style="height: 85%">
+      <CommentReply v-if="isReplyShow" :comment="currentComment"></CommentReply>
+    </van-popup>
+    <!-- /发布评论 -->
   </div>
 </template>
 
@@ -127,17 +136,25 @@ import dayjs from '@/utils/days'
 import ArticleCollect from './components/ArticleCollect.vue'
 import CommentList from './components/CommentList.vue'
 import CommentPopup from './components/CommentPopup.vue'
+import CommentReply from './components/CommentReply.vue'
 export default {
   name: 'ArticleIndex',
   components: {
     ArticleCollect,
     CommentList,
-    CommentPopup
+    CommentPopup,
+    CommentReply
   },
   props: {
     articleId: {
       type: [Number, String],
       required: true
+    }
+  },
+  //给所有的后代组件提供数据
+  provide: function () {
+    return {
+      articleId: this.articleId
     }
   },
   data() {
@@ -148,7 +165,9 @@ export default {
       followLoading: false, //网速慢时点击按钮转圈
       totalCommentCounts: 0, //底部评论角标
       isPopupShow: false, //弹出层的显隐
-      commentList: [] //评论列表
+      commentList: [], //评论列表
+      isReplyShow: false, //回复弹出层的显隐
+      currentComment: {} //当前点击回复的评论项
     }
   },
   computed: {
@@ -198,6 +217,12 @@ export default {
       this.isPopupShow = false
       //讲发布的评论显示到列表顶部
       this.commentList.unshift(data.new_obj)
+    },
+    onReplyClick(comment) {
+      // console.log(comment)
+      this.currentComment = comment
+
+      this.isReplyShow = true
     }
   }
 }
